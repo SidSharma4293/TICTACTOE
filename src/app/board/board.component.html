@@ -1,0 +1,22 @@
+
+<h1> Enter 'X' Player Name : </h1> 
+<input nbInput status="info" color = "white" type = "text" [(ngModel)] = "XPlayer"> <br> <br>
+<h1> Enter 'O' Player Name : </h1> 
+<input nbInput status="info" color = "white" type = "text" [(ngModel)] = "OPlayer"> 
+<h1>Current Player: {{player}}</h1>
+
+<button [disabled] = "!startEnabled" nbButton outline status = "danger" (click)="start()">Start</button>
+<button [disabled] = "!newGameEnabled" nbButton outline status = "danger" (click)="newGame()">New Game</button>
+<button nbButton outline status = "danger" (click)="restart()">Restart</button>
+
+<h2 *ngIf = "winner">
+    Player  {{winner}} won the game
+</h2>
+
+<main *ngIf = "showBoard">
+    <app-square *ngFor="let val of squares; let i = index" 
+    [value]= "val"
+    (click) = "makeMove(i)" [showBox] = "!gameOn">
+
+    </app-square>
+</main>
